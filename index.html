@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Ranking</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+</style>
+</head>
+<body>
+<div class="hero">
+    <div class="hero-bg">
+    <div class="hero-track">
+      <img src="https://a.storyblok.com/f/296405/930x518/b13a578f19/minecraft-shaders-1.jpg">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlVAiDqrcuwsF7Zn8cXmt6HMk0FT6Rg2tsg&s">
+      <img src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2021/12/minecraft-thumb.jpg">
+      <img src="https://a.storyblok.com/f/296405/930x518/b13a578f19/minecraft-shaders-1.jpg">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLlVAiDqrcuwsF7Zn8cXmt6HMk0FT6Rg2tsg&s">
+      <img src="https://cdn-media.sforum.vn/storage/app/media/wp-content/uploads/2021/12/minecraft-thumb.jpg">
+    </div>
+  </div>
+  <h1>TOP PVP SERVER</h1>
+  <p>Bảng xếp hạng PvP real-time ⚡</p>
+
+  <div class="server-ip" onclick="copyIP()">
+    thachminh09022010.aternos.me:49218
+    <span class="copy-text">Click to copy</span>
+  </div>
+</div>
+</div>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="overall" onclick="switchTab('overall')">Overall</button>
+        <button class="tab-btn" data-tab="sword" onclick="switchTab('sword')">Sword</button>
+        <button class="tab-btn" data-tab="axe" onclick="switchTab('axe')">Axe</button>
+        <button class="tab-btn" data-tab="mace" onclick="switchTab('mace')">Mace</button>
+        <button class="tab-btn" data-tab="spear" onclick="switchTab('spear')">Spear</button>
+    </div>
+    <div class="container" id="list">Loading...</div>
+
+
+    <div id="popup-overlay" onclick="closePopup()">
+        <div id="popup-content" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closePopup()">×</button>
+            <div id="popup-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
