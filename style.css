@@ -304,3 +304,19 @@ body {
 @media (max-width: 600px) {
   .hero h1 { font-size: 28px; }
 }
+
+/* Thêm đoạn này thay thế hoặc bổ sung vào file CSS của bạn */
+.tier-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .tier-board { grid-template-columns: repeat(2, 1fr); }
+    .player { grid-template-columns: 50px 1fr 100px; } /* Thu gọn bảng trên đt */
+}
+
+/* Hiệu ứng loading */
+.loading { text-align: center; color: #64748b; padding: 20px; }
