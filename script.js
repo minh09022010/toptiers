@@ -179,31 +179,34 @@ function closePopup(){
 }
 
 // ===== LOAD =====
-// Thay thế hàm loadStats bằng phiên bản này
-async function loadStats() {
-    const list = document.getElementById("list");
-    
-    try {
-        const playerPromises = Object.keys(uuidMap).map(async (uuid) => {
-            try {
-                const res = await fetch(`./kill_player/${uuid}.json`);
-                if (!res.ok) throw new Error();
-                const data = await res.json();
-                const name = uuidMap[uuid];
-                const kills = data?.stats?.["minecraft:custom"]?.["minecraft:player_kills"] ?? 0;
-                return { name, kills, points: Math.floor(kills * 1.5), tiers: playerTiers[name] || {} };
-            } catch {
-                return { name: uuidMap[uuid], kills: 0, points: 0, tiers: {} };
-            }
-        });
+async function loadStats(){
+    const players = await Promise.all(Object.keys(uuidMap).map(async uuid=>{
+        try{
+            const res = await fetch(`./kill_player/${uuid}.json`);
+            const data = await res.json();
 
-        const players = await Promise.all(playerPromises);
-        render(players);
-    } catch (err) {
-        console.error("Lỗi khi tải dữ liệu:", err);
-    }
+            const name = uuidMap[uuid];
+            const kills = data?.stats?.["minecraft:custom"]?.["minecraft:player_kills"] ?? 0;
+
+            return {
+                name,
+                kills,
+                points: Math.floor(kills * 1.5),
+                tiers: playerTiers[name] || {}
+            };
+
+        } catch {
+            return {
+                name: uuidMap[uuid],
+                kills: 0,
+                points: 0,
+                tiers: {}
+            };
+        }
+    }));
+
+    render(players);
 }
-
 
 function copyIP(){
   const ip = "thachminh09022010.aternos.me:49218";
@@ -226,8 +229,3 @@ function copyIP(){
 // INIT
 loadStats();
 setInterval(loadStats, 5000);
-// Gọi hàm khi load trang
-document.addEventListener("DOMContentLoaded", () => {
-    loadStats();
-    setInterval(loadStats, 10000); // Tăng lên 10s để giảm tải cho server
-});
